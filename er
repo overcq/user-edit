@@ -1,0 +1,3 @@
+#!/bin/sh
+tmp="$( gksudo /root/system/bin/user_edit.sh "$1" )" \
+&& exec ocq text "$tmp"
