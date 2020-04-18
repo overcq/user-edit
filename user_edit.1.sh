@@ -13,8 +13,8 @@ E_overcq_S_tmp="$3"
 #==============================================================================
 trap 'rm -f -- "$E_overcq_S_tmp" "${E_overcq_S_tmp}.lock"' EXIT
 touch "${E_overcq_S_tmp}.lock" \
-  && { ( \
-      E_overcq_S_cp_pid= ;\
+  && \
+  { ( E_overcq_S_cp_pid= ;\
       while inotifywait -qq -e close_write -- "$E_overcq_S_tmp"; do \
           [ -n "$E_overcq_S_cp_pid" ] && bg "$E_overcq_S_cp_pid" && kill $E_overcq_S_cp_pid ;\
           cp -- "$E_overcq_S_tmp" "$E_overcq_S_file" & \
