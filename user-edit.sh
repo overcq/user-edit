@@ -21,7 +21,7 @@ if trap 'rm -f -- "$E_overcq_S_tmp"' EXIT \
   && chmod g=rw "$E_overcq_S_tmp" \
   && trap - EXIT ;\
 then
-    d $(dirname "$0" )/user-edit.1.sh $SUDO_UID "$E_overcq_S_file" "$E_overcq_S_tmp" \
+    d $(dirname "$0" )/user-edit-1.sh $SUDO_UID "$E_overcq_S_file" "$E_overcq_S_tmp" \
       && printf '%s\n' "$E_overcq_S_tmp"
 fi
 ###############################################################################
