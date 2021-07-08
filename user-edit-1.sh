@@ -16,7 +16,11 @@ touch "${E_overcq_S_tmp}.lock" \
   && \
   { ( E_overcq_S_cp_pid= ;\
       while inotifywait -qq -e close_write -- "$E_overcq_S_tmp"; do \
-          [ -n "$E_overcq_S_cp_pid" ] && bg "$E_overcq_S_cp_pid" && kill $E_overcq_S_cp_pid ;\
+          if [ -n "$E_overcq_S_cp_pid" ]; then \
+              while [ -n "$( ps | sed -e 's`^ *\([0-9][0-9]*\).*`\1`' | grep -Fxe "$E_overcq_S_cp_pid" )" ]; do \
+                  sleep 1 ;\
+              done ;\
+          fi ;\
           cp -- "$E_overcq_S_tmp" "$E_overcq_S_file" & \
           E_overcq_S_cp_pid=$! ;\
       done \
