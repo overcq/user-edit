@@ -11,7 +11,7 @@
 umask 77
 E_ocq_S_file="$1"
 [ -f "$E_ocq_S_file" ] \
-  && file -- "$E_ocq_S_file" | grep -qwe text \
+  && file -- "$E_ocq_S_file" | grep -qwe text -e empty \
   || exit 1
 E_ocq_S_tmp="$( mktemp )"
 #==============================================================================
